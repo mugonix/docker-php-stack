@@ -8,8 +8,7 @@ RUN sudo apt-get update \
 
 # RUN sudo /usr/bin/mysql_secure_installation
 
-COPY etc/supervisor.d/mysql.ini /etc/supervisor.d/
-COPY etc/supervisor.d/create_database.ini /etc/supervisor.d/
+COPY etc/ /etc/
 
 COPY create_database.sh /
 RUN sudo chmod o+x /create_database.sh

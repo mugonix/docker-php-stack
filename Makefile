@@ -10,7 +10,7 @@ ifneq ($(docker-machine active),)
 	docker-machine start
 endif
 
-build/7.4-nginx: 7.4/nginx build/7.4-fpm
+build/7.4-nginx: 7.4/nginx
 	@make loggedin
 	docker image build -t dgoring/php-stack:7.4-nginx ./7.4/nginx
 	docker push dgoring/php-stack:7.4-nginx
