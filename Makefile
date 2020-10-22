@@ -16,3 +16,9 @@ build/7.4-nginx: 7.4/nginx
 	docker push dgoring/php-stack:7.4-nginx
 	@date > ./build/7.4-nginx
 
+build/5.6-nginx: 5.6/nginx
+	@make loggedin
+	docker image build -t dgoring/php-stack:5.6-nginx ./5.6/nginx
+	docker push dgoring/php-stack:5.6-nginx
+	@date > ./build/5.6-nginx
+
