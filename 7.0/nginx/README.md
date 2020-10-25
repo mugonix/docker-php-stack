@@ -1,5 +1,5 @@
-# php7.4-fpm + nginx + mariadb
-Docker image based on the image `php:7.4-fpm` with nginx added on, this is for my personal use but if you have any suggestions please add an issue or create a pull request
+# php7.0-fpm + nginx + mariadb
+Docker image based on the image `php:7.0-fpm` with nginx added on, this is for my personal use but if you have any suggestions please add an issue or create a pull request
 
 ## included packeges
 ### php extentions:
@@ -21,7 +21,7 @@ utilities
 ## Usage
 ```yaml
   web:
-    image: dgoring/php-stack:7.4-nginx
+    image: dgoring/php-stack:7.0-nginx
     restart: always
     volumes:
       # 1. mount your workdir path

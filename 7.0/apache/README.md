@@ -1,5 +1,5 @@
-# php7.4-fpm + nginx + mariadb
-Docker image based on the image `php:7.4-fpm` with nginx added on, this is for my personal use but if you have any suggestions please add an issue or create a pull request
+# php7.0-fpm + apache2 + mariadb
+Docker image based on the image `php:7.0-fpm` with apache added on, this is for my personal use but if you have any suggestions please add an issue or create a pull request
 
 ## included packeges
 ### php extentions:
@@ -21,7 +21,7 @@ utilities
 ## Usage
 ```yaml
   web:
-    image: dgoring/php-stack:7.4-nginx
+    image: dgoring/php-stack:7.0-apache
     restart: always
     volumes:
       # 1. mount your workdir path
@@ -35,7 +35,7 @@ utilities
 ```
 optional config files
 
-- *.conf for nginx host config
+- *.conf for apache host config
 - *.run for supervisord program
 - *.fpm for php-fpm lister
 - *.ini for php.ini file
@@ -48,17 +48,11 @@ This image has it's own fpm which runs on 127.0.0.1:9000
 if you want to set your own you need to add the proxy in your host file
 and set your fpm listener to a file or different port
 ```vhost
-location ~ \.php\d?$ {
-    try_files $uri =404;
-
-    fastcgi_split_path_info ^(.+\.php)(/.+)$;
-    fastcgi_pass 127.0.0.1:8000;
-    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    fastcgi_param SCRIPT_NAME $fastcgi_script_name;
-    fastcgi_index index.php;
-    include fastcgi_params;
-}
-
+  <IFModule mod_proxy_fcgi.c>
+  <FilesMatch "\.php\d?$">
+      SetHandler  "proxy:fcgi://127.0.0.1:8000"
+  </FilesMatch>
+</IfModule>
 ```
 
 ### Extending

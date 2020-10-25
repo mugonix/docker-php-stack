@@ -1,5 +1,5 @@
-# php7.2-fpm + nginx
-Docker image based on the image `php:7.2-fpm` with nginx added on, this is for my personal use but if you have any suggestions please add an issue or create a pull request
+# php5.6-fpm + nginx + mariadb
+Docker image based on the image `php:5.6-fpm` with nginx added on, this is for my personal use but if you have any suggestions please add an issue or create a pull request
 
 ## included packeges
 ### php extentions:
@@ -21,13 +21,17 @@ utilities
 ## Usage
 ```yaml
   web:
-    image: dgoring/php:7.2-nginx
+    image: dgoring/php-stack:5.6-nginx
     restart: always
     volumes:
       # 1. mount your workdir path
       - /site:/site
       # 2. mount your configuration files
       - /config:/config
+    environment:
+      MYSQL_DATABASE: 'development'
+      MYSQL_USERNAME: 'development'
+      MYSQL_PASSWORD: 'secret'
 ```
 optional config files
 
